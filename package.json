@@ -1,0 +1,28 @@
+{
+  "name": "directory-compare-script",
+  "version": "1.0.0",
+  "description": "basic script that makes that compares two directory",
+  "main": "service.js",
+  "scripts": {
+    "start": "node ./out/service.js",
+    "compile": "tsc",
+    "compile-watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akrck02/NodeJsComparatorScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akrck02/NodeJsComparatorScript/issues"
+  },
+  "homepage": "https://github.com/akrck02/NodeJsComparatorScript#readme",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17"
+  }
+}
