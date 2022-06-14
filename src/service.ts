@@ -2,6 +2,7 @@ import { log } from "console";
 import { Commands } from "./commands";
 import { Parameters } from "./configuration";
 import { Configuration } from "./configuration";
+import { Logger } from "./logger";
 
 const fs = require('fs');
 
@@ -58,7 +59,7 @@ export class Service {
     private checkParams() {
     
         if (this.params.directory === undefined || this.params.directory === "") {
-            console.log("[ERROR] No directory defined in params.json, exiting...");
+            Logger.error("No directory defined in params.json, exiting...");
             process.exit(1);
         }
 
@@ -69,7 +70,7 @@ export class Service {
         
         
         if (this.params.compare === undefined || this.params.compare === "") {
-            console.log("[ERROR] No compare directory defined in params.json, exiting...");
+            Logger.error("No compare directory defined in params.json, exiting...");
             process.exit(1);
         }
 
@@ -100,7 +101,7 @@ export class Service {
         let fileUrl = root? file : this.params.directory + "/" + file;	
 
         if(file == null || !fs.existsSync(fileUrl)) {
-            console.log("[WARN] The file '" + fileUrl + "' does not exist, skipping...");
+            Logger.warning("The file '" + fileUrl + "' does not exist, skipping...");
             return;
         }
 
@@ -113,13 +114,13 @@ export class Service {
         
         // Handle files
         if(Commands.isFile(this.params.directory + file)) {
-            console.log("--------------------------------------------------------------------------------");
-            console.log("[INFO] Comparing '" + file + "'...");
-            console.log("--------------------------------------------------------------------------------");
-            
+  
+            Logger.log("[Info] Comparing '" + file + "'...");
             try {
                 Commands.diff(this.params.directory + file, this.params.compare + file);
             } catch (e) {}
+            console.log("\n");
+            
         }
     }
 
